@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=deadStateColour\ aliveStateColour\ cellState\ orientation\ dimension
+comment0.target=Cell(java.awt.Color,\ java.awt.Color,\ CellState,\ java.awt.Point,\ java.awt.Dimension)
+comment1.params=
+comment1.target=boolean\ isAlive()
+comment2.params=
+comment2.target=boolean\ isDead()
+comment3.params=
+comment3.target=java.awt.Rectangle\ getBody()
+comment4.params=
+comment4.target=void\ kill()
+comment5.params=
+comment5.target=void\ enliven()
+comment6.params=cellState
+comment6.target=void\ setColor(CellState)
+comment7.params=graphics2d
+comment7.target=void\ draw(java.awt.Graphics2D)
+numComments=8

@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=applicationFrame\ applicationFrameDimension
+comment0.target=Environment(javax.swing.JFrame,\ java.awt.Dimension)
+comment1.params=
+comment1.target=void\ enableEnvironmentalChange()
+comment2.params=cycleCardinality
+comment2.target=void\ enableDenseInitialEnvironmentalChange(int)
+comment3.params=mouseEvent
+comment3.target=void\ enableSparseInitialEnvironmentalChange(java.awt.event.MouseEvent)
+comment4.params=explorationIndex
+comment4.target=int\ evaluateSourroundings(int)
+comment5.params=graphics
+comment5.target=void\ paintComponent(java.awt.Graphics)
+numComments=6
