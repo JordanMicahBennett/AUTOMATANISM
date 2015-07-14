@@ -24,7 +24,7 @@ import java.awt.Shape;
 
 
 
-public class UNICODE_HideMechanism2
+public class UNICODE_HideMechanismII
 {
     //attributes
 		//establish audio player
@@ -67,7 +67,7 @@ public class UNICODE_HideMechanism2
 		private int arcWidth, arcHeight, axisRadiusDisplacement;
 		private boolean boxRoundedEnquiry;
 		
-        public UNICODE_HideMechanism2 ( String _tray_icon_label, String _menu_item_label, String _tray_icon_directory, boolean _surface_contact, JFrame _applicationFrame, String _unhideAudioClipName, String _boxRestorationMessage, String _boxDirectory, String _boxButtonType, float _boxOpacityLevel, Color _boxColour, Color _boxTextBackgroundColour, Color _boxTextForegroundColour, int _boxButtonWidth, int _boxButtonHeight, int arcWidth, int arcHeight, int axisRadiusDisplacement, int _boxButtonChopValue, boolean _boxRoundedEnquiry )
+        public UNICODE_HideMechanismII ( String _tray_icon_label, String _menu_item_label, String _tray_icon_directory, boolean _surface_contact, JFrame _applicationFrame, String _unhideAudioClipName, String _boxRestorationMessage, String _boxDirectory, String _boxButtonType, float _boxOpacityLevel, Color _boxColour, Color _boxTextBackgroundColour, Color _boxTextForegroundColour, int _boxButtonWidth, int _boxButtonHeight, int arcWidth, int arcHeight, int axisRadiusDisplacement, int _boxButtonChopValue, boolean _boxRoundedEnquiry )
         {
 			//establish app frame
 			applicationFrame = _applicationFrame;

@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.params=_splashScreenDuration\ splashScreenImageDirectory\ _nextThread\ _nextSplashPanel
-comment0.target=SplashPanelGenericInstance(int,\ java.lang.String,\ java.lang.Thread,\ data.packages.UNICODE.UNICODE_SplashPanel)
-comment1.params=graphics2d
-comment1.target=void\ drawMore(java.awt.Graphics2D)
-numComments=2
