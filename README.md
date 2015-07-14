@@ -33,7 +33,7 @@ Title  : 'automatanism' - a simple cellular automaton emulating arbitrary life (
 
 
 
-![Alt text](https://github.com/JordanMicahBennett/AUTOMATANISM/blob/master/source-code/data/images/captures/0.png?raw=true"default page")
+![Alt text](https://github.com/JordanMicahBennett/AUTOMATANISM/blob/master/source-code/data/images/captures/1.png?raw=true"default page")
 ============================================		
 
 
