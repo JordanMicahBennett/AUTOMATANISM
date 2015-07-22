@@ -1,4 +1,4 @@
-package data.packages.UNICODE; //Author(s): Jordan Micah Bennett
+package data.packages.UNICODE;
 //:---------------------------------------------:
 //:--: Author: Jordan Micah Bennett
 //:--: Title: Complex Table Class
@@ -9,11 +9,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.Component;
+import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
+import java.awt.Image;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import java.util.Scanner;
@@ -37,7 +39,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentListener;
 import javax.swing.SwingUtilities;
 import java.awt.FlowLayout;
-
+import javax.swing.JScrollBar;
 
 public class UNICODE_Structure_ComplexTable 
 {
@@ -154,11 +156,14 @@ public class UNICODE_Structure_ComplexTable
             fgHighlightedColour = fgHighlighted;
         }
         
-        //add row to table by index ( for now the table has 7 fixed columns )
-        public void addRow ( String data_string, int index, int how_many_strings )
+        //add row to table by index
+        public void addRow ( String data_string, int index )
         {
+			//establish column cardinality
+			int columnCardinality = column_labels.length;
+		
             //establish column component array
-            String [ ] column_comp_array = new String [ how_many_strings ];
+            String [ ] column_comp_array = new String [ columnCardinality ];
             
             //increment item count
             incrementItemCount ( );
@@ -166,20 +171,29 @@ public class UNICODE_Structure_ComplexTable
             //scan the data string
             Scanner string_scanner = new Scanner ( data_string );
             
-            //turn string into indicidual column components
-            for ( int column_components = 0; column_components < how_many_strings; column_components ++ )
+            //turn string into individual column components
+            for ( int column_components = 0; column_components < columnCardinality; column_components ++ )
                 column_comp_array [ column_components ] = string_scanner.next ( );
             
             
+			//generate object array
+			String objectArray [ ] [ ] = new String [ columnCardinality/*column cardinality*/ ] [ 1 /*row cardinality*/ ];
+			
+			for ( int columns = 0; columns < columnCardinality; columns ++ )
+				objectArray [ columns ] [ 0 ] = column_comp_array [ columns ];
+			
+            
             //insert data into table via table model
-            getTableModel ( ).insertRow ( index, new Object [ ] { column_comp_array [ 0 ], column_comp_array [ 1 ], column_comp_array [ 2 ], column_comp_array [ 3 ], column_comp_array [ 4 ], column_comp_array [ 5 ] } );
-        }
-        
-        //add row to end of table
-        public void addRow ( String data_string, int how_many_strings )
+			getTableModel ( ).insertRow ( index, objectArray );
+		}
+        //add row to table at end of table
+        public void addRow ( String data_string )
         {
+			//establish column cardinality
+			int columnCardinality = column_labels.length;
+		
             //establish column component array
-            String [ ] column_comp_array = new String [ how_many_strings ];
+            String [ ] column_comp_array = new String [ columnCardinality ];
             
             //increment item count
             incrementItemCount ( );
@@ -187,37 +201,56 @@ public class UNICODE_Structure_ComplexTable
             //scan the data string
             Scanner string_scanner = new Scanner ( data_string );
             
-            //turn string into indicidual column components
-            for ( int column_components = 0; column_components < how_many_strings; column_components ++ )
+            //turn string into individual column components
+            for ( int column_components = 0; column_components < columnCardinality; column_components ++ )
                 column_comp_array [ column_components ] = string_scanner.next ( );
             
             
+			//generate object array
+			String objectArray [ ] [ ] = new String [ columnCardinality/*column cardinality*/ ] [ 1 /*row cardinality*/ ];
+			
+			for ( int columns = 0; columns < columnCardinality; columns ++ )
+				objectArray [ columns ] [ 0 ] = column_comp_array [ columns ];
+			
+            
             //insert data into table via table model
-            getTableModel ( ).addRow ( new Object [ ] { column_comp_array [ 0 ], column_comp_array [ 1 ], column_comp_array [ 2 ], column_comp_array [ 3 ], column_comp_array [ 4 ], column_comp_array [ 5 ] } );
+			getTableModel ( ).addRow ( objectArray );
+		}   
+		
+        //add rows to table
+        public void addRows ( String [ ] [ ] data, int rowCardinality, int initialRow )
+        {
+			//establish column cardinality
+			int columnCardinality = column_labels.length;
+	
+            
+			//populate with dummy data @ non-dummy information length
+			for ( int rows = 0; rows < rowCardinality; rows ++ )
+			{
+				getTableModel ( ).addRow ( new Object [ ] { "" } );		
+				incrementItemCount ( );		
+			}
+			
+			//alter/populate with non-dummy information 
+			for ( int columns = 0; columns < columnCardinality; columns ++ )
+				for ( int rows = initialRow; rows < rowCardinality; rows ++ )
+					getTableModel ( ).setValueAt ( data [ columns ] [ rows ], rows, columns );	
         } 
-        
-        //add row to table by index ( for now the table has 7 fixed columns )
-        public void addCustomRow ( String data_string, int index, int how_many_strings )
+     
+        //add image @ location
+        public void addImage ( Image image, int columnIndex, int rowIndex )
         {
-            //establish column component array
-            String [ ] column_comp_array = new String [ how_many_strings ];
-            
-            //increment item count
-            incrementItemCount ( );
-            
-            //scan the data string
-            Scanner string_scanner = new Scanner ( data_string );
-            
-            //turn string into indicidual column components
-            for ( int column_components = 0; column_components < how_many_strings; column_components ++ )
-                column_comp_array [ column_components ] = string_scanner.next ( );
-            
-            
             //insert data into table via table model
-            getTableModel ( ).insertRow ( index, new Object [ ] { column_comp_array [ 0 ], column_comp_array [ 1 ], column_comp_array [ 2 ], column_comp_array [ 3 ], column_comp_array [ 4 ], column_comp_array [ 5 ] } );
-        }        
-        
-        
+			getTableModel ( ).setValueAt ( image, rowIndex, columnIndex );
+        }       
+		
+		//add image icon @ location
+        public void addImageIcon ( ImageIcon imageIcon, int columnIndex, int rowIndex )
+        {
+            //insert data into table via table model
+			getTableModel ( ).setValueAt ( imageIcon, rowIndex, columnIndex );
+        }       
+		
         //remove row
         public void removeRow ( int index )
         {
@@ -251,7 +284,7 @@ public class UNICODE_Structure_ComplexTable
             }
         
         //miscallaneus
-        public void setup ( int rowHeight, final String table_bg_directory, final String table_bg_image, String alignment )
+        public void setup ( int rowHeight, final String table_bg_directory, final String table_bg_image, String alignment, String tableThumbStream, String tableTrackStream, Color tableBackgroundColour )
         {
          //table
             //make the table model ( with image icon and updatability support )
@@ -331,6 +364,11 @@ public class UNICODE_Structure_ComplexTable
                     };
                 }
             };
+			
+			//customized scrollbar
+			JScrollBar scrollBar = scroll_pane.getVerticalScrollBar ( );
+			scrollBar.setPreferredSize ( new Dimension ( 12, Integer.MAX_VALUE ) );
+			scrollBar.setUI ( new UNICODE_MetalScrollBarUI ( tableThumbStream, tableTrackStream ) );
             
  
             //adjust the table
@@ -344,6 +382,11 @@ public class UNICODE_Structure_ComplexTable
             //set alginment of scroll pane
             scroll_pane.setAlignmentX ( Component.CENTER_ALIGNMENT );
             
+			//set border style
+			getScrollPane ( ).setBorder ( BorderFactory.createLineBorder ( tableBackgroundColour ) );
+			getTable ( ).getTableHeader ( ).setBackground ( tableBackgroundColour );
+ 	
+			
             //add scroll pane to destination panel
             destination_panel.add ( scroll_pane );
         }
@@ -394,6 +437,10 @@ public class UNICODE_Structure_ComplexTable
                 TableCellRenderer tcr_img_icon = table.getDefaultRenderer ( ImageIcon.class );
                 DefaultTableCellRenderer dtcr_img_icon = ( DefaultTableCellRenderer ) tcr_img_icon;
                 dtcr_img_icon.setHorizontalAlignment ( SwingConstants.LEFT );
+                //left align images
+                TableCellRenderer tcr_img = table.getDefaultRenderer ( Image.class );
+                DefaultTableCellRenderer dtcr_img = ( DefaultTableCellRenderer ) tcr_img;
+                dtcr_img.setHorizontalAlignment ( SwingConstants.LEFT );
             }
             if ( alignment.equals ( "center" ) )
             {
@@ -417,6 +464,10 @@ public class UNICODE_Structure_ComplexTable
                 TableCellRenderer tcr_img_icon = table.getDefaultRenderer ( ImageIcon.class );
                 DefaultTableCellRenderer dtcr_img_icon = ( DefaultTableCellRenderer ) tcr_img_icon;
                 dtcr_img_icon.setHorizontalAlignment ( SwingConstants.CENTER );
+                //center images
+                TableCellRenderer tcr_img = table.getDefaultRenderer ( Image.class );
+                DefaultTableCellRenderer dtcr_img = ( DefaultTableCellRenderer ) tcr_img;
+                dtcr_img.setHorizontalAlignment ( SwingConstants.CENTER );
             }
             if ( alignment.equals ( "right" ) )
             {
@@ -440,6 +491,10 @@ public class UNICODE_Structure_ComplexTable
                 TableCellRenderer tcr_img_icon = table.getDefaultRenderer ( ImageIcon.class );
                 DefaultTableCellRenderer dtcr_img_icon = ( DefaultTableCellRenderer ) tcr_img_icon;
                 dtcr_img_icon.setHorizontalAlignment ( SwingConstants.RIGHT );
+                //right align images
+                TableCellRenderer tcr_img = table.getDefaultRenderer ( Image.class );
+                DefaultTableCellRenderer dtcr_img = ( DefaultTableCellRenderer ) tcr_img;
+                dtcr_img.setHorizontalAlignment ( SwingConstants.RIGHT );
             }
         }
         
