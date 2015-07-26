@@ -46,4 +46,4 @@ To stop/pause automatanism, scroll down ( bend finger on mouse wheel )
      
 AUTHOR PORTFOLIO
 ============================================
-http://jordanbennett.2fh.co/ 
+http://folioverse.appspot.com/
