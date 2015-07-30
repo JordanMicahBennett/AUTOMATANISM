@@ -31,6 +31,7 @@ Title  : 'automatanism' - a simple cellular automaton emulating arbitrary life (
 		rule 1) A live cell with two or three live neighbors stays alive ( survival ).
 		otherwise) In all other cases, a cell dies or remains dead (overcrowding or loneliness).
 
+		
 
 
 ![Alt text](https://github.com/JordanMicahBennett/AUTOMATANISM/blob/master/source-code/data/images/captures/1.png?raw=true"default page")
