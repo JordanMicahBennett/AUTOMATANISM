@@ -20,7 +20,7 @@ public class UNICODE_DisplayConsole
         static UNICODE_ConveniencePack conveniencePack = new UNICODE_ConveniencePack ( );
         //establish duration pack for all splash panels //NOT RECORDING~ { 80, 50, 60, 1600, 400 }; //RECORDING~{ 400, 400, 400, 2600, 800 }; //TESTING~{ 8, 8, 8, 8, 8 };
         //REC 2:{ 900, 900, 900, 4400, 800 } ................ { 900, 900, 900, 4400, 800 }
-        static int [ ] splashPanelDurationCollection = { 400, 400, 400, 400, 400 };
+        static int [ ] splashPanelDurationCollection = { 50, 50, 50, 50, 120 };
         //establsih gui panel: takes frame,
         static Environment environmentPanel = new Environment ( frame, frameDimension );
         //establish screen dimensions
